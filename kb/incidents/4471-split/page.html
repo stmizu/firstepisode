@@ -1,10 +1,10 @@
 <!doctype html><meta charset="utf-8"><title>#4471 · two problems, not one</title>
 <style>body{font:16px/1.5 system-ui;max-width:46rem;margin:2rem auto;padding:0 1rem}table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:.3rem .6rem}.c{background:#fff4d6;padding:.6rem 1rem;border-left:4px solid #d9a400}.s{font:.85rem monospace;color:#666}</style>
-<h1>#4471 · two problems, not one</h1><p>owner: support desk · status: draft · reviewed: 2026-11-02</p>
+<h1>#4471 · two problems, not one</h1><p>owner: support desk · status: closed · reviewed: 2026-11-02</p>
 <p>#4471 was merged as one bug. The reports hold <b>two</b>, with different causes and different fixes. The export lists 427 rows, but 15 are repeats of the same id. Counted once each, there are <b>412 reports</b>.</p>
-<p class="c">Not one issue. The queued parser fix covers 379 reports. The other 33 need a different fix.</p>
-<h2>The two problems</h2><ul><li><b><code>parser</code> · 379 reports.</b> The shared parser reads every date month first. Ticket: <a href="https://github.com/stmizu/firstepisode/issues/1">stmizu/firstepisode#1</a>.</li>
-<li><b><code>hint</code> · 33 reports.</b> The <code>booking-v3</code> form prints <code>MM/DD/YYYY</code> under the date field. Ticket: <a href="https://github.com/stmizu/firstepisode/issues/2">stmizu/firstepisode#2</a>.</li></ul>
+<p class="c">Not one issue. The parser fix covers 379 reports and is fixed. The other 33 will not be fixed: the booking-v3 form is retired.</p>
+<h2>The two problems</h2><ul><li><b><code>parser</code> · 379 reports.</b> The shared parser reads every date month first. Desk: <b>fixed</b> (<code>fix(dates): parse dd/mm for eu locales</code>). Ticket: <a href="https://github.com/stmizu/firstepisode/issues/1">stmizu/firstepisode#1</a>.</li>
+<li><b><code>hint</code> · 33 reports.</b> The <code>booking-v3</code> form prints <code>MM/DD/YYYY</code> under the date field. Desk: <b>won't fix</b> (booking-v3 form retired). Ticket: <a href="https://github.com/stmizu/firstepisode/issues/2">stmizu/firstepisode#2</a>.</li></ul>
 <h2>What was merged</h2><p><b>412</b> reports merged into #4471 · <b>2</b> causes</p>
 <table><tr><th>cause</th><th>reports</th><th>tagged as</th><th>tenants</th><th>seen</th><th></th></tr><tr><td><code>parser</code></td><td>379</td><td>parser ×356 · hint ×23</td><td>11</td><td>2026-04-01 → 2026-10-04</td><td>#4471</td></tr>
 <tr><td><code>hint</code></td><td>33</td><td>hint ×18 · parser ×15</td><td>3</td><td>2026-04-17 → 2026-09-22</td><td>not this ticket — own ticket</td></tr></table>

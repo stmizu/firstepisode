@@ -2,7 +2,7 @@
 layout: runbook
 title: '#4471 · two problems, not one'
 owner: support desk
-status: draft
+status: closed
 reviewed: 2026-11-02
 signature: 'v1.eyJzdG9yeSI6Im9mZiIsInN1YiI6IjMyMzQiLCJhdWQiOiJjaGFsbGVuZ2U6d2hhdC1pdC1zaG93cyIsImlhdCI6MTc5MzY1MjYyNSwiZXhwIjoxNzkzNzM5MDI1fQ.RQsAcnO9R3HJyeIhwbtmJxWZZD6LxUeZQtLoIZ8-pw0'
 ---
@@ -18,16 +18,16 @@ The export lists 427 rows, but 15 are repeats of the same id. Counted once each,
 **412 reports**.
 
 <Callout>
-Not one issue. The queued parser fix covers 379 reports. The other 33 need a different fix.
+Not one issue. The parser fix covers 379 reports and is fixed. The other 33 will not be fixed: the booking-v3 form is retired.
 </Callout>
 
 ## The two problems
 
 - **`parser` · 379 reports.** The shared parser reads every date month first. Tenants that write
-  the day first get dates flipped. Ticket: [stmizu/firstepisode#1](https://github.com/stmizu/firstepisode/issues/1).
+  the day first get dates flipped. Desk: **fixed** (`fix(dates): parse dd/mm for eu locales`). Ticket: [stmizu/firstepisode#1](https://github.com/stmizu/firstepisode/issues/1).
 - **`hint` · 33 reports.** The `booking-v3` form prints `MM/DD/YYYY` under the date field. People at
   day-first tenants (alder.physio, copper.studio, pale.harbour) type what the hint says.
-  Ticket: [stmizu/firstepisode#2](https://github.com/stmizu/firstepisode/issues/2).
+  Desk: **won't fix** (booking-v3 form retired). Ticket: [stmizu/firstepisode#2](https://github.com/stmizu/firstepisode/issues/2).
 
 ## What was merged
 
@@ -47,6 +47,6 @@ Not one issue. The queued parser fix covers 379 reports. The other 33 need a dif
   A count of 412 looked like one cause.
 - Count by id, not by row: exports overlap.
 - 5 reports read as a one-day move (R-41202, R-41209, R-41236, R-41344, R-41620). They are counted
-  under `parser` by tenant. Check them once the parser fix ships.
+  under `parser` by tenant. Check them now that the parser fix has shipped.
 
 <RenderStamp {signature} />
