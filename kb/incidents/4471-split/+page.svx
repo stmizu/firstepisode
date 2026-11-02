@@ -1,0 +1,52 @@
+---
+layout: runbook
+title: '#4471 · two problems, not one'
+owner: support desk
+status: draft
+reviewed: 2026-11-02
+signature: 'v1.eyJzdG9yeSI6Im9mZiIsInN1YiI6IjMyMzQiLCJhdWQiOiJjaGFsbGVuZ2U6d2hhdC1pdC1zaG93cyIsImlhdCI6MTc5MzY1MjYyNSwiZXhwIjoxNzkzNzM5MDI1fQ.RQsAcnO9R3HJyeIhwbtmJxWZZD6LxUeZQtLoIZ8-pw0'
+---
+
+<script>
+  import CauseTable from '#lib/kb/CauseTable.svelte';
+  import Callout from '#lib/kb/Callout.svelte';
+  import RenderStamp from '#lib/kb/RenderStamp.svelte';
+</script>
+
+#4471 was merged as one bug. The reports hold **two**, with different causes and different fixes.
+The export lists 427 rows, but 15 are repeats of the same id. Counted once each, there are
+**412 reports**.
+
+<Callout>
+Not one issue. The queued parser fix covers 379 reports. The other 33 need a different fix.
+</Callout>
+
+## The two problems
+
+- **`parser` · 379 reports.** The shared parser reads every date month first. Tenants that write
+  the day first get dates flipped. Ticket: [stmizu/firstepisode#1](https://github.com/stmizu/firstepisode/issues/1).
+- **`hint` · 33 reports.** The `booking-v3` form prints `MM/DD/YYYY` under the date field. People at
+  day-first tenants (alder.physio, copper.studio, pale.harbour) type what the hint says.
+  Ticket: [stmizu/firstepisode#2](https://github.com/stmizu/firstepisode/issues/2).
+
+## What was merged
+
+<CauseTable ticket={4471} />
+
+## How the desk can tell them apart
+
+- Do not trust the intake tag. It is a guess from the browser. It was wrong on 23 `parser`
+  reports and on 15 `hint` reports.
+- Look up the tenant: its locale and its booking form decide the cause.
+- A `form` report from a `booking-v3` tenant that writes the day first is `hint`. Anything else
+  from a day-first tenant is `parser`.
+
+## Lessons
+
+- Merging on the subject line ([decision 0001](/kb/decisions/0001-dedupe-by-subject)) hid a second bug.
+  A count of 412 looked like one cause.
+- Count by id, not by row: exports overlap.
+- 5 reports read as a one-day move (R-41202, R-41209, R-41236, R-41344, R-41620). They are counted
+  under `parser` by tenant. Check them once the parser fix ships.
+
+<RenderStamp {signature} />
